@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GoogleFirebaseOne</string>
+    <string name="send_data">Send Data</string>
+</resources>
