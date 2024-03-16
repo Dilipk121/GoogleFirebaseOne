@@ -60,22 +60,32 @@ class RvContactAdapter(private val contactList: ArrayList<Contacts>) :
                     MaterialAlertDialogBuilder(holder.itemView.context)
                         .setTitle("Delete Item Permanently")
                         .setMessage("Are You Sure To Delete This Item")
-                        .setPositiveButton("Yes"){_,_ ->
+                        .setPositiveButton("Yes") { _, _ ->
 
-                        val firebaseRef = FirebaseDatabase.getInstance().getReference("contacts")
+                            val firebaseRef =
+                                FirebaseDatabase.getInstance().getReference("contacts")
                             firebaseRef.child(currentItem.id.toString()).removeValue()
                                 .addOnSuccessListener {
-                                    Toast.makeText(holder.itemView.context, "Item Removed Successfully", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        holder.itemView.context,
+                                        "Item Removed Successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                                 .addOnFailureListener {
-                                    Toast.makeText(holder.itemView.context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        holder.itemView.context,
+                                        "Error ${it.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                         }
-                        .setNegativeButton("No"){_,_ ->
-                            Toast.makeText(holder.itemView.context, "Cancelled", Toast.LENGTH_SHORT).show()
+                        .setNegativeButton("No") { _, _ ->
+                            Toast.makeText(holder.itemView.context, "Cancelled", Toast.LENGTH_SHORT)
+                                .show()
 
                         }
-                        .show() // must call it
+                        .show()
 
                     return@setOnLongClickListener true
                 }
